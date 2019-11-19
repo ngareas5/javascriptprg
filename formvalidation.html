@@ -1,0 +1,257 @@
+<html>
+<head>
+<style>
+body {
+  background-image: url('/home/protonshub/Downloads/books.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size:100% 100%;
+}
+input[type=text], select, textarea {
+  width: 50%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  margin-bottom: 16px;
+  width:500px
+}
+input[type=password] {
+  width: 50%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  margin-bottom: 16px;
+  width:500px
+}
+
+input[type=submit] {
+  background-color: red;
+  color: white;
+  padding: 12px 15px;
+  cursor: pointer;
+  margin-left: 200px;
+  margin-top: 11px
+ 
+}
+
+input[type=submit]:hover {
+  background-color: green;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #d3d0cf;
+  padding: 20px ;
+  width:500px;
+  position:relative;
+  left: 450px;
+  height:800px;
+  
+ 
+}
+h3{
+  margin-left: 570px;
+}
+</style>
+<script  type="text/javascript"> 
+
+function validatename()
+{
+ var name=document.myform.name.value; 
+  if (name==null || name=="")
+    {  
+      document.getElementById("name").innerHTML="Please enter name"; 
+      return false;
+    } 
+    else
+    { 
+     document.getElementById("name").innerHTML="";
+    }
+   return true;
+}
+function validatepassword()
+{
+  var password=document.myform.password.value;
+  var password2=document.myform.password2.value;
+  var pre= /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  
+    if(password==""|| password==null)
+       {  
+    
+          document.getElementById("password").innerHTML="Please enter password"; 
+          myform.name.focus();
+          return false;  
+    
+        }
+        else
+       { 
+         document.getElementById("password").innerHTML="";
+         if(!pre.test(password))
+         {
+   
+          document.getElementById("password").innerHTML="password must contain at least one number one lowercase letter or on uppercaselatter";
+          return false;
+         } 
+        else
+        {
+      
+          document.getElementById("password").innerHTML="";
+
+         }
+       }
+    return true;
+}
+function validatepassword2()
+{
+    var password=document.myform.password.value;
+    var password2=document.myform.password2.value;
+    var pre= /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if(password2==""&&password!="")
+    {
+     document.getElementById("password2").innerHTML="please enter again password";
+     return false;
+    }
+     else
+    {
+      document.getElementById("password2").innerHTML="";
+      if(password!=password2)
+      {
+       document.getElementById("password2").innerHTML="password must be same!";
+       return false;  
+       }
+ 
+      else
+      {
+        document.getElementById("password2").innerHTML=""
+       }
+  }
+return true;
+}
+
+function validateemail()
+{
+    var x=document.myform.email.value; 
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    
+     if(x==""|| x==null)
+      {  
+    
+         document.getElementById("email").innerHTML="Please enter email";
+         return false;
+      }
+       else
+       { 
+          document.getElementById("email").innerHTML="";
+          if (!reg.test(x))
+          {  
+   
+           document.getElementById("email").innerHTML="Please enter a valid e-mail address";
+           return false
+          } 
+          else
+          {
+            document.getElementById("email").innerHTML="";
+          } 
+   
+      } 
+   return true;  
+}
+function validatephone()
+{
+
+    var phone =document.myform.phone.value;
+    var phre = /^\d{10}$/;
+      if(phone==""||phone==null)
+       {  
+         document.getElementById("phone").innerHTML="Please enter phone number";
+         return false;
+       }
+      else
+      {
+         document.getElementById("phone").innerHTML="";
+         if(!phre.test(phone))
+         {
+          document.getElementById("phone").innerHTML= "phone number should be numeric or legnth should be 10";
+  	  return  false;
+         }
+         else
+         {
+         document.getElementById("phone").innerHTML="";
+         }
+      } 
+   return true;
+}
+function validategender()
+{
+
+  if (document.myform.g[0].checked==false&&document.myform.g[1].checked==false&&document.myform.g[2].checked==false)
+   {
+      document.getElementById("gender").innerHTML= "select gender";
+      return false;
+   }
+   else
+   {
+    document.getElementById("gender").innerHTML= " ";
+   }
+  return true;
+}
+function validateterms()
+{
+    if(document.myform.terms.checked==false)
+     {
+       document.getElementById("check").innerHTML= "You must agree to the terms first.";
+       return false;
+     }
+     else
+     {
+           document.getElementById("check").innerHTML= " ";
+     }
+   return true;
+}
+function validateForm() {
+    var isFormValid = true;
+    isFormValid &= validatename();
+    isFormValid &= validatepassword();
+    isFormValid &= validatepassword2();
+    isFormValid &= validateemail();
+    isFormValid &= validatephone();
+    isFormValid &= validategender();
+    isFormValid &= validateterms();
+    return isFormValid? true:false;
+}
+</script> 
+</head>
+<body>
+
+<h3>REGISTRATION FORM</h3>
+<div class="container">
+  <form  name="myform" method="post" onsubmit="return validateForm()">
+    Name:<br>
+    <input type="text"  name="name"> <span id="name" style="color:red"></span><br>
+    
+	
+    password<br>
+    <input type="password" name="password"><span id="password" style="color:red"></span><br>
+    re-enterpassword<br>
+    <input type="password" name="password2"><span id="password2" style="color:red"></span><br>
+    Email: <input type="text" name="email" placeholder="xyz@gmail.com"><span id="email" style="color:red"></span><br>
+    Phone No:<br>
+    <input type="text" name="phone"><span id="phone" style="color:red"></span><br>
+    Gender<br><span id="gender" style="color:red"></span><br>
+    <input type="radio" name="g" value="Male">male<br>
+    <input type="radio" name="g" value="Female">Female<br>
+    <input type="radio" name="g" value="other">Other<br><br>
+    Country
+    <select name="country" value=""><span id="country" style="color:red"></span><br>
+     <option value="Please select country"> select country</option>
+     <option value="india">India</option>
+      <option value="canada" >Canada</option>
+      <option value="USA">USA</option>
+      <option value="china">China</option>>
+    </select>
+     <input type="checkbox" name="terms" value="chec"/>"I agree with terms and conditions" <br> <span id="check" style="color:red"></span><br>
+    <input type="submit" name="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>
